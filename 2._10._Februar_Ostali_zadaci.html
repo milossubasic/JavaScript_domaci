@@ -1,0 +1,60 @@
+<!doctype HTML>
+
+<html>
+
+<head>
+    <title>Domaci - 10.02.</title>
+    
+    <style>
+        h2 {
+            margin-top:3%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Domaci - 10.02., drugi deo</h1>
+
+    <h2>Zadatak 2 - Zahtevati od korisnika unos godina. Zatim napisati funkciju koja proverava da li je korisnik
+        punoletan. Ukoliko je korisnik punoletan ispisati mu poruku da je dozvoljen pristup , ukoliko nije
+        ispisati poruku da je pristup odbijen. Potrebno je funkciju pozvati kada korisnik klikne na dugme
+        "Pristupi".</h2>
+    
+    <h3>Molimo Vas unesite broj Vaših navršenih godina:</h3>
+
+    <p><input type='number' id='prviBroj2'></p>
+    
+    <p id='funkcija2'><button onclick='ispisivanje2()'>Pristupi</button></p>
+    
+
+    <h2>Zadatak 3 - Reagovati na događaj onmouseover sa funkcijom po izboru.</h2>
+    
+    <p id='funkcija3'><button onmouseover='ispisivanje3()'>NIKAKO NE PRELAZITI PREKO OVOG DUGMETA!!!</button></p>
+
+
+</body>
+
+<script>
+    /***************** ZADATAK 2 *******************************/
+        function ispisivanje2(){
+            let broj2 = document.getElementById('prviBroj2').value;
+            if (broj2>17) {
+                document.getElementById('funkcija2').innerHTML='Pristup dozvoljen';
+            }
+            else {document.getElementById('funkcija2').innerHTML='Pristup odbijen';}
+        }
+
+    /***************** ZADATAK 3 *******************************/
+    function ispisivanje3(){
+            document.write("<img src='https://media1.tenor.com/images/a5c713ad1ea6231b7b9b5b3d5404d7d8/tenor.gif?itemid=8382533'>");
+    } 
+
+
+
+</script>
+
+
+
+</html>
+
