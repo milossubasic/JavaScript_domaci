@@ -1,0 +1,58 @@
+<!doctype HTML>
+
+<html>
+
+<head>
+    <title>Domaci - 14.02.</title>
+    
+    <style>
+        h2 {
+            margin-top:3%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Domaci - 14.02.</h1>
+
+    <h2>Definisati objekat grad koji sadrži svojstva naziv , država , broj stanovnika i poštanski broj.
+        Potrebno je definisati get i set metodu. Get metoda treba da vraća svojstvo naziv , dok set metoda
+        treba da menja poštanski broj grada.
+        Pozvati get i set metodu i zatim ispisati vrednosti za ta svojstva.</h2>
+      
+    <p id='funkcija1' ondblclick='ispisivanje1()'>Dvoklikom na ovaj paragraf aktivirate funkciju.</p>
+    
+    <p id='paragraf1'></p>
+    <p id='paragraf2'></p>
+
+</body>
+
+<script>
+    
+        let grad = {
+            naziv: 'Beograd',
+            drzava: 'Srbija',
+            brojStanovnika: 1700000,
+            postanskiBroj: 11000,
+            get metoda1() {
+                return document.getElementById('paragraf1').innerHTML=this.naziv;
+            },
+            set metoda2(pb){
+                this.postanskiBroj=pb
+            }
+        }
+        
+        function ispisivanje1(){
+            grad.metoda1;
+            grad.metoda2=21000;
+            document.getElementById('paragraf2').innerHTML=grad.postanskiBroj;
+        }
+
+    
+</script>
+
+
+
+</html>
+
