@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Pretraga stanova</title>
+
+        <meta charset="UTF-8">
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic' rel='stylesheet' type='text/css'>
+
+        <style>
+            /******** OSNOVNE POSTAVKE ********/
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: #fff;
+                color: #555;
+                font-family: 'Lato', 'Arial', sans-serif;
+                font-weight: 300;
+                font-size: 20px;
+                text-rendering: optimizeLegibility;
+            }
+
+            /******** ZAJEDNICKI ELEMENTI ********/
+
+            .row {
+                max-width: 1140px;
+                margin: 0 auto;
+            }
+            section {
+                padding:40px 0;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 250%;
+                margin-bottom:50px;
+                letter-spacing: 5px;
+                word-spacing: 10px;
+            }
+
+            h2 {
+                margin-bottom:20px;
+                margin-left: 15%;
+            }
+
+            h3 {
+                margin-left: 15%;
+                margin-bottom: 10px;
+            }
+
+            /******** SEKCIJA UNOS ********/
+
+            .sekcija-unos p {
+                margin-bottom:15px;
+                margin-left:15%;
+            }
+
+            #dugme {
+                color: #555;
+                margin-top:25px;
+                margin-left:15%;
+                display:inline;
+                text-decoration: none;
+                border:2px solid #555;
+                border-radius: 200px;
+                padding:5px 10px;
+                transition:background-color 0.2s, color 0.2s; 
+            }
+
+            #dugme:hover {
+                background-color: #555;
+                color: #fff;
+            }
+
+            /******** SEKCIJA PONUĐENI OGLASI ********/
+            
+            .sekcija-ponudjeni-oglasi p {
+                margin-bottom:5px;
+                margin-left:17%;
+            }
+            
+
+            /******** SEKCIJA FOTOGRAFIJE ********/
+
+            .sekcija-fotografije{
+                padding: 0 0;
+            }
+            
+            .flex {
+                height:250px;
+            }
+            .slika{
+                height:100%;
+                width:25%;
+                opacity:0.7;
+                transform:scale(1.15);
+                transition:opacity 0.2s, transform 0.2s;
+            }
+
+            .slika:hover{
+                opacity:1;
+                transform:scale(1.03);
+            }
+
+        </style>
+    
+    </head>
+
+    <body>
+
+        <section class='sekcija-unos row'>
+            <h1>PRETRAGA STANOVA</h1>
+
+            <h2>Molimo Vas unesite parametre za pretragu:</h2>
+            
+            <p><label for="gradovi">Grad:</label>
+                <select id='gradovi'>
+                    <option value='Beograd'>Beograd</option>
+                    <option value='Despotovac'>Despotovac</option>
+                    <option value='Svilajnac'>Svilajnac</option>
+                    <option value='Vranje'>Vranje</option>
+                </select>
+            </p>
+
+            <p>
+            <label for ='brojOsoba'>Broj soba:</label> 
+                <select id='brojOsoba'>
+                    <option value='Jednosoban'>Jednosoban</option>
+                    <option value='Dvosoban'>Dvosoban</option>
+                </select>
+            </p>
+
+            <p>Kavdratura: <input type='number' id='kvadratura'></p>
+            <p>Cena: <input type='number' id='cena'></p>
+
+            <a href='#'id='dugme' onclick='funkcijaCela()'>PRONAĐI</a>
+        </section>
+
+        <section class='sekcija-ponudjeni-oglasi row'>
+            <h3 id='prviParagraf'></h3>
+            <p id='vrednost1'></p>
+            <p id='vrednost2'></p>
+            <p id='vrednost3'></p>
+            <p id='vrednost4'></p>
+            <h3 id='drugiParagraf'></h3>
+        </section>
+
+        <section class='sekcija-fotografije'>
+            <div id='prvi' class='flex'></div>
+            <div id='drugi' class='flex'></div>
+        </section>
+
+    </body>
+
+    <script>
+        /******** DEKLARISANJE OBJEKTA ********/
+        let parametriPretrage = new Object();
+        let i=1;
+        /******** FUNKCIJA KOJA SVE RADI, IAKO NIJE MORALO TAKO, SVOJSTVA I VREDNOSTI SU MOGLI DA BUDU URADJENI POSEBNIM FUNKCIJAMA ********/
+        function funkcijaCela(){
+
+            /******** DODAVANJE SVOJSTAVA I NJIHOVIH VREDNOSTI OBJEKTU parametriPretrage ********/
+            parametriPretrage.lokacija=document.getElementById('gradovi').value;
+            parametriPretrage.brojOsoba=document.getElementById('brojOsoba').value;
+            parametriPretrage.kvadratura=document.getElementById('kvadratura').value;
+            parametriPretrage.cena=document.getElementById('cena').value;
+
+            /******** ISPISIVANJE ZAHTEVA PRETRAGE ********/
+            document.getElementById('prviParagraf').innerHTML="Prema Vašim parametrima";
+            
+                for (s in parametriPretrage){
+                    document.getElementById('vrednost'+i).innerHTML='- ' + parametriPretrage[s];
+                    i++;
+                }
+            document.getElementById('drugiParagraf').innerHTML="pronašli smo sledeće stanove:";
+
+            /******** PRIKAZIVANJE FOTOGRAFIJA ********/
+            document.getElementById('prvi').innerHTML=
+            "<img class='slika' src='https://res.cloudinary.com/apartmentlist/image/upload/s--IWUDBFdo--/c_fill,dpr_auto,f_auto,g_center,h_415,q_auto,t_web-base,w_640/1d937da0bb5681ebb61a29c263e8c69d.jpg'><img class='slika' src='https://q-xx.bstatic.com/xdata/images/hotel/840x460/200051570.jpg?k=52c15a2aa674672a1440bd1d596e57f918b2fbdc0c942b6a5add5a6dc0f4a165&o='><img class='slika' src='https://cdn.homedit.com/wp-content/uploads/2011/06/modern-unique-stylish-apartment1.jpg'><img class='slika' src='https://images.trvl-media.com/hotels/24000000/23080000/23073300/23073291/12923428_z.jpg'>";
+            document.getElementById('drugi').innerHTML=
+            "<img class='slika' src='https://q-xx.bstatic.com/xdata/images/hotel/840x460/127707006.jpg?k=d3f18859b44cb7aa96a15cf47a8f8a9bbed4de8647ad53b6c42c2492a1c3989b&o='><img class='slika' src='http://cdn.bestdesignideas.com/wp-content/uploads/2015/11/Modern-Apartment-In-European-Style-In-Taiwan-From-Fertility-Design-Studio-1.jpg'><img class='slika' src='https://roohome.com/wp-content/uploads/2016/06/Thirty-Year-Old-Apartment-in-Taipei-06-1150x766.jpg'><img class='slika' src='https://roohome.com/wp-content/uploads/2016/07/5ae0b825176327.563427b7a3e3e.jpeg'>";
+        }
+    </script>
+
+</html>
