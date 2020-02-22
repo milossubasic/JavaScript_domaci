@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Samostalno-21.februar</title>
+
+        <meta charset="UTF-8">
+
+        <style>
+            h2 {
+            margin-top:3%;
+            width:50%;
+        }
+
+            h3 {
+                
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+            <h1>Samostalno vezbanje nakon predavanja od petka, 21.02. - HTML DOM</h1>
+
+
+            <h2 class='prva'>Zadatak 1 - DOM metoda, html svojstvo i html event</h2>
+            <h3>Dohvatiti paragraf ispod ovog teksta pomocu id-a i napisati: 'Bravo, promenio si tekst ovog elemenata pomocu getElementByID metode, i svojstva innerHTML!' Funkcija treba da se pozove pomocu html eventa ondblclick.</h3>
+
+            <p id='zadatak-1' ondblclick='funkcijaZadatka_1()'>Ovo je paragraf na koji treba dva puta kliknuti da bi se promenio tekst</p>
+
+            <h2>Zadatak 2 - DOM metoda, css svojstvo i html event</h2>
+            <h3 class='prva'>Dohvatiti sve h2 elemente i promeniti im boju. Funkcija treba da se aktivira pomocu oninput eventa.</h3>
+            <input id='zadatak-2' oninput='funkcijaZadatka_2()' type='text' placeholder='Pocni da kucas ovde da bi se promenila boja h2 naslova' size='100'>
+
+
+            <h2>Zadatak 3 - DOM metoda, html svojstvo atributa i html event</h2>
+            <h3>Pomocu eventa promeniti link koji koristi donji paragraf.</h3>
+            <p><a id='link' onmousewheel='funkcijaZadatka_3()' href='https://www.imdb.com/' target="blank">Klikni jednom na link i vidi sta ce biti. Zatim dok je kursos na ovom tekstu malo skroluj gore-dole. Onda ponovo klikni i vidi sta ce biti</a><p>
+
+            <h2>Zadatak 4 - DOM metoda, css svojstvo i DOM event<br>
+            <h3 class='prva'>Na prelazak misa treba paragrafu koji je ispod promeniti pozadinu u plavu boju, a zatim na sklanjanje misa pozadina ponovo ne treba da bude u boji. Event dodati DOM metodom.</h3>
+            <p id='zadatak-4'>Dodjite misom na ovaj paragraf kako bi se boja pozadine promenila, i maknite misa sa ovog paragrafa kako bi se boja pozadine vratila na staro.</p>
+
+
+    </body>
+
+    <script>
+        /********************************** ZADATAK 1 **********************************/
+
+        //Funkcija koja se pokrece za zadatak 1
+        function funkcijaZadatka_1(){
+            document.getElementById('zadatak-1').innerHTML='Bravo, promenio si tekst ovog elemenata pomocu getElementByID metode, i svojstva innerHTML!'    
+        }
+
+        /********************************** ZADATAK 2 **********************************/
+
+        //Funkcija koja se pokrece za zadatak 2
+        function funkcijaZadatka_2(){
+            //Prvo definisemo varijablu koja ce da uhvati sve elemente sa tagom H2
+            let a=document.getElementsByTagName('H2');
+
+            //Sada su u varijabli a uhvaceni svi H2 elementi, i da bi se svima promenila boja mora da se radi for petlja
+            //Kada se ovako uhvate svi H2 elementi oni se ponasaju kao niz, tako da im se pristupa pomocu uglastih zagrada, i prvi element ima broj 0
+                for (let i=0; i<a.length; i++){
+                a[i].style.color='red';
+                }
+        }
+        
+        /********************************** ZADATAK 3 **********************************/
+        
+        //Funkcija koja se pokrece za zadatak 3
+        function funkcijaZadatka_3(){
+            document.getElementById('link').href='https://www.youtube.com/'    
+        }
+
+        /********************************** ZADATAK 4 **********************************/
+        
+        //Definisanje varijable koja ce da dohvati id elementa koji nam treba
+        let b=document.getElementById('zadatak-4');
+
+        //Definisanje funkcije koja ce se desavati kada je mis na paragrafu
+        function funkcijaZadatka_4_1(){
+            b.style.backgroundColor='blue';
+        }
+
+        //Definisanje funkcije koja ce se desavati kada mis ode sa paragrafa
+        function funkcijaZadatka_4_2(){
+            b.style.backgroundColor='initial';
+        }
+
+        //JavaScript dodavanje eventa elementu kada mis dodje na paragraf
+        b.addEventListener('mouseover', funkcijaZadatka_4_1);
+
+        //JavaScript dodavanje eventa elementu kada mis ode sa paragrafa
+        b.addEventListener('mouseout', funkcijaZadatka_4_2);
+
+    </script>
+
+</html>
