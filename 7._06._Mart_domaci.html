@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>06. mart, domaci</title>
+
+        <style>
+        .actionElementi {
+            top:100px;
+            font-size:200%;
+        }
+        </style>
+    
+    </head>
+
+    <body id='body'>
+
+        <div id='prviZadatak' class='zaBrisanje'>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+        
+
+        <div id='drugiZadatak_1' class='zaBrisanje'>
+            <p>Drugi zadatak, prvi paragraf prvog diva</p>
+            <p id='drugiParagrafPrvogDiva'>Drugi zadatak, drugi paragraf prvog diva</p>
+        </div>
+
+        <div id='drugiZadatak_2' class='zaBrisanje'>
+            <p id='prviParagrafDrugogDiva'>Drugi zadatak, prvi paragraf drugog diva</p>
+            <p>Drugi zadatak, drugi paragraf drugog diva</p>
+        </div>
+
+        <p class='actionElementi' id='paragrafZaBrisanje'>Dvoklik na ovaj tekst i sve ce biti obrisano</p>
+
+        <p class='actionElementi' id='paragrafZaMenjanje'>Dvoklik na ovaj tekst i prvi paragraf ce biti zamenjen sa onim koji kaze 'blablabla'</p>
+
+        <p class='actionElementi' id='paragrafZaMenjanjeParagrafa'>Dvoklik na ovaj tekst i svi paragrafi ce postati pink</p>
+
+        <p class='actionElementi' id='brojGodina'></p>
+
+    </body>
+
+    <script>
+
+/*Zadatak 1
+Napraviti html stranicu koja sadrži div u kome se nalaze tri paragrafa. Zatim kreirati novi h1
+element i dodati ga unutar diva. Unutar h1 elementa je potrebno da se nalazi tekst "Uspeo sam!".
+*/
+            let a=document.getElementById('prviZadatak');
+            let b=document.createElement('h1');
+            let c=document.createTextNode('Uspeo sam!');
+            b.style.cssText = 'color:red;';
+
+            b.appendChild(c);
+            a.appendChild(b);
+
+/*Zadatak 2
+Napraviti html stranicu koja poseduje dva diva sa po dva paragrafa. U prvom divu potrebno je
+između dva paragrafa ubaciti h1 element koji sadrži tekst "Naknadno ubačeno". Zatim u drugom
+divu ubaciti h3 element ispred oba paragrafa sa tekstom "Prvi u drugom divu".
+Nakon što su naslovi ubačeni potrebno je promeniti im boju koristeći JavaScript.
+*/  
+            //Prvi deo zadatka
+            let prviDivDrugogZadatka=document.getElementById('drugiZadatak_1');
+            let noviElementDrugogZadatka=document.createElement('h1');
+            let tekstNovogElementaDrugogZadatka=document.createTextNode('Naknadno ubaceno');
+            let drugiParagrafPrvogDiva=document.getElementById('drugiParagrafPrvogDiva');
+
+            noviElementDrugogZadatka.appendChild(tekstNovogElementaDrugogZadatka);
+            prviDivDrugogZadatka.insertBefore(noviElementDrugogZadatka, drugiParagrafPrvogDiva);
+
+            //Drugi deo zadatka
+            let drugiDivDrugogZadatka=document.getElementById('drugiZadatak_2');
+            let noviElementDrugogZadatka_2=document.createElement('h3');
+            let tekstNovogElementaDrugogZadatka_2=document.createTextNode('Prvi u drugom divu');
+            let prviParagrafDrugogDiva=document.getElementById('prviParagrafDrugogDiva');
+
+            noviElementDrugogZadatka_2.appendChild(tekstNovogElementaDrugogZadatka_2);
+            drugiDivDrugogZadatka.insertBefore(noviElementDrugogZadatka_2, prviParagrafDrugogDiva);
+
+            //Treci deo zadatka
+            document.getElementsByTagName('h1')[1].style.color='blue';
+            document.getElementsByTagName('h3')[0].style.color='green';
+
+/*Zadatak 3
+Obrisati sve elemente neke html stranice uz pomoć metode remove().
+*/
+            //Ovaj zadatak se izvrsava ako se 2 puta klikne na paragraf obrisi sve
+            document.getElementById('paragrafZaBrisanje').addEventListener('dblclick', function (){
+                document.getElementById('body').remove();    
+            })
+
+/*Zadatak 4
+Uz pomoć metode replaceChild() zameni tri html elementa neke vaše html stranice.
+*/
+            document.getElementById('paragrafZaMenjanje').addEventListener('dblclick', function (){
+                let zamenskiParagraf=document.createElement('p');
+                let tekstZamenskogParagrafa=document.createTextNode('blablabla');
+                
+                zamenskiParagraf.appendChild(tekstZamenskogParagrafa);
+
+                a.replaceChild(zamenskiParagraf, b);
+
+            })
+
+/*Zadatak 5
+Potrebno je kreirati kolekciju objekata koja sadrži sve paragraf elemente html stranice. Zatim
+pristupiti svakom objektu i promeniti mu boju.
+*/
+            let paragrafi=document.getElementsByTagName('p');
+
+            document.getElementById('paragrafZaMenjanjeParagrafa').addEventListener('dblclick', function (){
+                for (let i=0; i<paragrafi.length; i++){
+                    paragrafi[i].style.color='violet';
+                }
+            })
+
+/*Zadatak 6
+Napisati funckiju koja će od korisnika zahtevati unos godina. Potrebno je da se funkcija pozove 5
+sekundi nakon učitavanja stranice.
+*/
+            function brojGodina(){
+                prompt('DAj godine');
+            }
+            
+            setTimeout(brojGodina, 5000);
+
+/*Zadatak 7
+Definisati funkciju koja od korisnika traži unos broja godina i zatim ispisuje poruku da li je
+korisnik punoletan ili ne. Funkcija treba da se poziva svakih 20 sekundi.
+*/
+
+            //Ova funkcija ce se pozivati sve dok korisnik ne da broj godina koji pokazuje da je maloletan
+            function brojGodina2(){
+                let brojGodina=prompt('DAj OPET godine:');
+                if(brojGodina>=18){
+                    document.getElementById('brojGodina').innerHTML='Punoletan si';
+                }
+                else {
+                    document.getElementById('brojGodina').innerHTML='Nisi punoletan';
+                    clearInterval(interval);
+                }
+
+            }
+
+            let interval=setInterval(brojGodina2, 10000);
+    </script>
+
+
+
+</html>
